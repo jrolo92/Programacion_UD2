@@ -1,4 +1,4 @@
-package proyecto.ut2;
+package proyecto.ud2;
 import java.util.Scanner;
 
 public class CalculadoraFinal {
@@ -21,9 +21,9 @@ public class CalculadoraFinal {
         System.out.println("Operaciones disponibles:");
         System.out.println("+, -, *, /, raiz");
         System.out.println("valorabs, logaritmo, funcionexp, seno, coseno");
-        System.out.println("tangente, arcosen, arcotang, redondeo");
+        System.out.println("tangente, arcosen, arcotang, redondeo, Positivo");
         System.out.println("acumulador, Fibonacci, Mayor, factorial, truncar");
-        System.out.println("primos, tabla, rango");
+        System.out.println("primos, compuestos, tabla, rango");
         System.out.println("SALIR -> pulse s");
         System.out.println();
         
@@ -70,7 +70,10 @@ public class CalculadoraFinal {
                 case "acumulador" -> resultado = acumulador(a);
                 case "primos" -> {
                     // conversión de tipo explícita.
-                    primos((int)a);
+                    esPrimo((int)a);
+                }
+                case "compuestos"-> {
+                    System.out.println(compuestoMenor ((int)a));
                 }
                 case "Fibonacci" -> {
                     // Ejemplo de llamada a la función.
@@ -217,39 +220,18 @@ public class CalculadoraFinal {
     }
     
     /**
-     * Pide un número al usuario y te dice si es primo
-     * @param a es el número que se introduce en la función
-     */
-    public static void primos(int a) {
-        int num = a;
-        
-        if (a > 2) {
-            for (int i = 2; i * i <= num; i++) {
-                if (num % i == 0) {
-                    // Ejemplo de salida anticipada break.
-                    System.out.println("El número " + a + " no es primo");
-                    break;
-                } else {
-                    System.out.println("El número "  + a + " es primo");
-                    break;
-                }
-            }
-        }
-    }
-    
-    /**
     * Calcula el factorial de un número n.
     * @param a es el numero al que le vamos a calcular el factorial.
     * @return factorial del número.
     */
     public static double factorial (double a){
       //La variable fact es local y sólo se podrá usar en este bloque.
-      double fact = 1;
+      double fact = a;
       if (a==0){
           fact=0;
       }else{
       //Ejemplo de un bucle for.
-            for(double i = 0; i <= a; ++i) {
+            for(double i = a-1; i >0; --i) {
                 fact = i * fact;
             }
         }  return fact;
@@ -261,8 +243,35 @@ public class CalculadoraFinal {
      * @return número truncado
      */
     //Esto es una declaración de funcion donde "a" es un parámetro de la misma.
-    
     public static double truncar (double a){
         return Math.floor(a);
+    }
+    
+    
+    public static int compuestoMenor (int a) {
+        int contador =0;
+        for (int i=4; i<=a;i++){
+            if (!esPrimo(i)){
+                contador++;
+            }
+        }
+        return contador;
+    }
+    
+    /**
+     * Pide un número al usuario y te dice si es primo
+     * @param a es el número que se introduce en la función
+     * @return True/False
+     */
+    public static boolean esPrimo(int a) {
+        if (a > 2) {
+            return false;
+        }            
+        for (int i = 2; i <= Math.sqrt(a); i++) {
+            if (a % i == 0) {
+            return false;        
+            }   
+        }
+        return true;
     }
 }
