@@ -70,13 +70,15 @@ public class CalculadoraFinal {
                 case "acumulador" -> resultado = acumulador(a);
                 case "primos" -> {
                     // conversión de tipo explícita.
-                    esPrimo((int)a);
+                    System.out.println(esPrimo((int)a));
                 }
                 case "compuestos"-> {
-                    System.out.println(compuestoMenor ((int)a));
+                    System.out.println("Los números compuestos menores que " 
+                            + a + " son " + compuestoMenor(a));
                 }
                 case "Fibonacci" -> {
-                    // Ejemplo de llamada a la función.
+                    /* Ejemplo de llamada a la función y conversion de tipo
+                    explicita*/
                     hastaFibonacci((int) a);                    
                 }
                 case "Positivo" -> {
@@ -247,8 +249,12 @@ public class CalculadoraFinal {
         return Math.floor(a);
     }
     
-    
-    public static int compuestoMenor (int a) {
+    /**
+     * Pide un número y muestra los números compuestos por debajo de ese numero
+     * @param a es el número introducido
+     * @return cantidad de números compuestos por debajo de a.
+     */
+    public static double compuestoMenor (double a) {
         int contador =0;
         for (int i=4; i<=a;i++){
             if (!esPrimo(i)){
@@ -264,7 +270,7 @@ public class CalculadoraFinal {
      * @return True/False
      */
     public static boolean esPrimo(int a) {
-        if (a > 2) {
+        if (a < 2) {
             return false;
         }            
         for (int i = 2; i <= Math.sqrt(a); i++) {

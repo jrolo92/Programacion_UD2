@@ -26,7 +26,7 @@ La calculadora permite realizar operaciones básicas como suma, resta, multiplic
   - Generación de tablas de números
   - Gestión de rangos aleatorios
 
-##Autores
+## Autores
 - Sergio Lechuga Márquez
 - Javier Rodríguez López
 
