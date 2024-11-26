@@ -1,4 +1,4 @@
-package proyecto.ud2;
+package proyecto.ut2;
 import java.util.Scanner;
 
 public class CalculadoraFinal {
@@ -23,7 +23,7 @@ public class CalculadoraFinal {
         System.out.println("valorabs, logaritmo, funcionexp, seno, coseno");
         System.out.println("tangente, arcosen, arcotang, redondeo");
         System.out.println("acumulador, Fibonacci, Mayor, factorial, truncar");
-        System.out.println("tabla, rango");
+        System.out.println("primos, tabla, rango");
         System.out.println("SALIR -> pulse s");
         System.out.println();
         
@@ -68,7 +68,7 @@ public class CalculadoraFinal {
                 case "arcotang" -> resultado = Math.atan(a);
                 case "redondeo" -> resultado = Math.round(a);
                 case "acumulador" -> resultado = acumulador(a);
-                case "primo" -> {
+                case "primos" -> {
                     // conversión de tipo explícita.
                     primos((int)a);
                 }
@@ -114,21 +114,45 @@ public class CalculadoraFinal {
         } while (!opciones.equalsIgnoreCase("s"));
     }
 
+    //Ejemplos de funciones
+    /**
+     * Calcula el valor de sumar un número a otro
+     * @param a es el primer sumando
+     * @param b es el segundo sumando
+     * @return el resultado total
+     */
     public static double suma(double a, double b) {
         //Ejemplo de operadores aritméticos.
         return a + b;
     }
-
-    //Ejemplo de función
+    
+    /**
+     * Calcula el valor de restar un numero a otro
+     * @param a es el minuendo
+     * @param b es el sustraendo
+     * @return la diferencia entre ambos números
+     */
     public static double resta(double a, double b) {
         //Ejemplo de return en una función
         return a - b;
     }
-
+    
+    /**
+     * Calcula la multiplicación de dos números
+     * @param a el multiplicando
+     * @param b el multiplicador
+     * @return el producto
+     */
     public static double multiplica(double a, double b) {
         return a * b;
     }
-
+    
+    /**
+     * Calcula la división de dos números mayores que 0
+     * @param a es el dividendo
+     * @param b es el divisor
+     * @return resultado de la división
+     */
     public static double division(double a, double b) {
         //Ejemplo de operadores lógicos y de un if de una línea.
         if (a != 0 && b != 0) 
@@ -137,7 +161,12 @@ public class CalculadoraFinal {
         System.out.println("Error: División por cero.");
         return 0;
     }
-
+    
+    /**
+     * Acumula un valor usando la constante e
+     * @param a es el número de veces que se acumula esa constante
+     * @return el valor acumulado
+     */
     public static double acumulador(double a) {
         double sumador = 0;
         final double EULER = Math.E;
@@ -148,7 +177,11 @@ public class CalculadoraFinal {
         }
         return sumador;
     }
-
+    
+    /**
+     * Calcula los números de fibonacci hasta el número que se introduzca
+     * @param a es el número hasta el que queremos ver la sucesión
+     */
     public static void hastaFibonacci(int a) {
         int elPrimero = 0, elSegundo = 1, siguiente;
         System.out.println("Los números de la serie Fibonacci hasta " + a + " son: ");
@@ -161,28 +194,43 @@ public class CalculadoraFinal {
         }
         System.out.println();
     }
-
+    
+    /**
+     * Calcula cuál es mayor de entre dos números introducidos
+     * @param a el primer número a comparar
+     * @param b el segundo número a comparar
+     * @return cual es mayor
+     */
     public static double esMayor(double a, double b) {
         //En la siguiente línea aparece un operador ternario.
         return a > b?a:b;
     }
     
+    /**
+     * Pide introducir un número y te devuelve si es positivo
+     * @param a es el número que se introduce
+     * @return True/False.
+     */
     public static boolean esPositivo(double a) {
         //Esta funcion te devuelve un operador relacional (mayor o igual).
         return a>=0;
     }
     
-    public static void primos(int x) {
-        int num = x;
+    /**
+     * Pide un número al usuario y te dice si es primo
+     * @param a es el número que se introduce en la función
+     */
+    public static void primos(int a) {
+        int num = a;
         
-        if (x > 2) {
+        if (a > 2) {
             for (int i = 2; i * i <= num; i++) {
                 if (num % i == 0) {
                     // Ejemplo de salida anticipada break.
-                    System.out.println("no es primo");
+                    System.out.println("El número " + a + " no es primo");
                     break;
                 } else {
-                    System.out.println("es primo");
+                    System.out.println("El número "  + a + " es primo");
                     break;
                 }
             }
@@ -192,28 +240,29 @@ public class CalculadoraFinal {
     /**
     * Calcula el factorial de un número n.
     * @param a es el numero al que le vamos a calcular el factorial.
-    * @return the results.
+    * @return factorial del número.
     */
     public static double factorial (double a){
       //La variable fact es local y sólo se podrá usar en este bloque.
       double fact = 1;
+      if (a==0){
+          fact=0;
+      }else{
       //Ejemplo de un bucle for.
-      for(double i = a; i >= 1; --i) {
-         fact = i * fact;
-      }
-    return fact;
+            for(double i = 0; i <= a; ++i) {
+                fact = i * fact;
+            }
+        }  return fact;
     }
+    
     /**
-     * Funcion que trunca un número n
+     * Funcion que trunca un número n con decimales
      * @param a es el número introducido con decimales a truncar
      * @return número truncado
      */
     //Esto es una declaración de funcion donde "a" es un parámetro de la misma.
+    
     public static double truncar (double a){
         return Math.floor(a);
     }
-    
-    public static double rango(double a, double b) { 
-    // Calcula el rango entre dos números 
-    return Math.abs(a - b); }
-    }
+}
